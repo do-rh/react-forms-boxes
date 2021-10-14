@@ -5,9 +5,10 @@ import NewBoxForm from "./NewBoxForm";
 
 /** Renders boxes and form
  * 
- * state: array of box info
+ * Props: none
+ * State: [{box info}, ...{box info}]
  * 
- * App -> BoxList -> Box, NewBoxForm
+ * App -> BoxList -> Box, NewBoxForm 
  * 
  */
 
@@ -20,7 +21,7 @@ function BoxList() {
     );
   }
 
-  function addBox(w, h, color) {
+  function addBox({ w, h, color }) { //pass object instead of individs
     setBoxes(prevBoxes => [...prevBoxes, { h, w, color, id: uuid() }]);
   }
 

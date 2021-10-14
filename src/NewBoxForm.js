@@ -1,18 +1,27 @@
 import { useState } from "react";
 
-function NewBoxForm({ addBox }) {
-  const INITIAL_INPUTS = {
-    w: "",
-    h: "",
-    color: ""
-  }
+const INITIAL_VALUES = {
+  w: "",
+  h: "",
+  color: ""
+};
 
-  const [formData, setFormData] = useState(INITIAL_INPUTS);
+/** Renders form to create nex box
+ *  
+ *  Props: addBox function
+ *  State: formData
+ *  
+ *  BoxList -> NewBoxForm
+ * 
+ */
+function NewBoxForm({ addBox }) {
+
+  const [formData, setFormData] = useState(INITIAL_VALUES);
 
   function handleSumbit(evt) {
     evt.preventDefault();
-    addBox(formData.w, formData.h, formData.color);
-    setFormData(INITIAL_INPUTS);
+    addBox(formData);
+    setFormData(INITIAL_VALUES);
   }
 
   function handleChange(evt) {
@@ -23,14 +32,15 @@ function NewBoxForm({ addBox }) {
     }));
   }
 
+  //style nicer, put each in a div
   return (
     <form onSubmit={handleSumbit}>
-      <label htmlFor="w">Width</label>
+      <label htmlFor="widthInput">Width</label>
       <input name="w" id="widthInput" value={formData.w} onChange={handleChange}></input>
-      <label htmlFor="h">Height</label>
+      <label htmlFor="heightInput">Height</label>
       <input name="h" id="heightInput" value={formData.h} onChange={handleChange}></input>
-      <label htmlFor="color">Color</label>
-      <input name="color" id="colorInput" value={formData.color} onChange={handleChange}></input>
+      <label htmlFor="colorInput">Color</label>
+      <input type="color" name="color" id="colorInput" value={formData.color} onChange={handleChange}></input>
       <button >Add new box!</button>
     </form>
   )

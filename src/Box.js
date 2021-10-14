@@ -1,19 +1,26 @@
 /** Renders a box with specified dimensions and color
+ * 
  *  Props: w, h, color, id, deleteBox function
  *  State: none
+ * 
+ *  BoxList -> Box
  */
 function Box({ w, h, color, id, deleteBox }) {
-  const boxDims = {
+  const boxStyle = {
     "width": `${w}px`,
     "height": `${h}px`,
     "backgroundColor": color,
   };
 
+  function handleRemove() {
+    deleteBox(id);
+  }
+
   return (
     <div>
-      <div className="box" style={boxDims} name={id}>
+      <div className="box" style={boxStyle}>
       </div>
-      <button onClick={(evt) => deleteBox(id)}> Delete me!</button>
+      <button onClick={handleRemove}> Delete me!</button>
     </div>
   );
 
